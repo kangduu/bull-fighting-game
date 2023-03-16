@@ -1,0 +1,30 @@
+#root {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #000;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+@media screen and (min-width:960px) {
+    body {
+        position: relative;
+    }
+
+    #root {
+        width: 900px;
+        max-width: 900px;
+        height: 600px;
+        margin: 0;
+        padding: 16px;
+        border-radius: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
