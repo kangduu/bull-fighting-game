@@ -1,0 +1,17 @@
+{
+	"name": "services",
+	"version": "0.0.1",
+	"description": "",
+	"private": true,
+	"scripts": {
+		"start": "nodemon app/main.js"
+	},
+	"keywords": [],
+	"author": "duk",
+	"license": "ISC",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"express": "^4.18.2",
+		"socket.io": "^4.6.1"
+	}
+}

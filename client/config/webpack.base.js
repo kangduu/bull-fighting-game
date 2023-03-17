@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isEnvDevelopment = process.env.NODE_ENV === 'development';
-console.log('isEnvDevelopment:', process.env.NODE_ENV);
 
 // link: https://juejin.cn/post/7111922283681153038#heading-21
 module.exports = {

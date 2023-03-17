@@ -7,7 +7,7 @@ module.exports = merge(BaseWebpackConfig, {
 	mode: 'development',
 	devtool: 'eval-cheap-module-source-map', // 源码调试模式
 	devServer: {
-		port: 3000,
+		port: 9999,
 		compress: true,
 		hot: true,
 		historyApiFallback: true,
