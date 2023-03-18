@@ -21,21 +21,32 @@ module.exports = {
 				use: ['babel-loader'],
 			},
 			{
-				test: /.css$/,
+				test: /.(css|less)$/,
 				include: [path.resolve(__dirname, '../src')],
-				use: [
-					isEnvDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-					'css-loader',
-					'postcss-loader',
-				],
-			},
-			{
-				test: /.less$/,
-				include: [path.resolve(__dirname, '../src')],
+				exclude: [/.module.(css|less)$/],
 				use: [
 					// 开发环境使用style-loader,打包模式抽离css
 					isEnvDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
 					'css-loader',
+					'postcss-loader',
+					'less-loader',
+				],
+			},
+			{
+				test: /.module.(css|less)$/,
+				include: [path.resolve(__dirname, '../src')],
+				use: [
+					isEnvDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 2,
+							modules: {
+								auto: (resourcePath) => resourcePath.endsWith('.less'),  // 匹配.less文件来进行css模块化。
+								localIdentName: '[local]_[hash:base64:6]',
+							},
+						},
+					},
 					'postcss-loader',
 					'less-loader',
 				],

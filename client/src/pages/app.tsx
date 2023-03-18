@@ -1,5 +1,5 @@
-import './app.less';
-import React, { useEffect } from 'react';
+import styles from './app.module.less';
+import React, { useEffect, useRef } from 'react';
 // import { ReactComponent as BullSvg } from '@/assets/bull.svg';
 import { io } from 'socket.io-client';
 
@@ -17,6 +17,7 @@ export default function App() {
 		});
 
 		socketIO.emit('login', { user: 'duk', captcha: '12345' });
+
 	}, []);
-	return <main className='app'></main>;
+	return <main className={styles['app']}></main>;
 }
