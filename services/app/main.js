@@ -3,36 +3,39 @@ const cors = require('cors'),
 const { Server } = require('socket.io');
 const { createServer } = require('http');
 const { deal } = require('./deal');
+const { sources } = require('./sources');
 
 const app = express();
-app.use(cors('http://192.168.88.59:9999'));
+app.use(cors(sources));
 
 const HttpServer = createServer(app);
 const port = 3000;
 
 // 创建实时连接
 const SocketIO = new Server(HttpServer, {
-	cors: { origin: 'http://192.168.88.59:9999' },
+	cors: { origin: sources },
 });
 
 // 监听连接
 SocketIO.on('connection', socket => {
-	// 处理用户登录和注册请求
-	socket.on('login', data => {
-		// 处理用户登录逻辑
-		console.log(data);
+	console.log('current-id:', socket.id);
+
+	// 新建房间
+	socket.on('create_room', data => {
+		console.log('create_room:', data);
 	});
 
-	socket.on('register', data => {
-		// 处理用户注册逻辑
+	// 用户刷新页面
+	socket.on('page_update', data => {
+		console.log('page_update:', data);
 	});
 
-	// 处理炸金花游戏请求
-	socket.on('start_game', data => {
-		// 处理炸金花游戏逻辑
+	// 加入房间
+	socket.on('join_room', data => {
+		console.log('join_room:', data);
 	});
 
-	// 处理用户退出请求
+	// 退出请求
 	socket.on('disconnect', () => {
 		// 处理用户退出逻辑
 	});

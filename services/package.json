@@ -4,13 +4,15 @@
 	"description": "",
 	"private": true,
 	"scripts": {
-		"start": "nodemon app/main.js"
+		"start": "cross-env NODE_ENV=development nodemon app/main.js",
+		"serve": "cross-env NODE_ENV=production nodemon app/main.js"
 	},
 	"keywords": [],
 	"author": "duk",
 	"license": "ISC",
 	"dependencies": {
 		"cors": "^2.8.5",
+		"cross-env": "^7.0.3",
 		"express": "^4.18.2",
 		"socket.io": "^4.6.1"
 	}
