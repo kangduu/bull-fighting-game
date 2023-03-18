@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 const isEnvDevelopment = process.env.NODE_ENV === 'development';
 
@@ -42,7 +43,7 @@ module.exports = {
 						options: {
 							importLoaders: 2,
 							modules: {
-								auto: (resourcePath) => resourcePath.endsWith('.less'),  // 匹配.less文件来进行css模块化。
+								auto: resourcePath => resourcePath.endsWith('.less'), // 匹配.less文件来进行css模块化。
 								localIdentName: '[local]_[hash:base64:6]',
 							},
 						},
@@ -53,7 +54,7 @@ module.exports = {
 			},
 			{
 				test: /.svg$/,
-				use: ['@svgr/webpack', 'url-loader']
+				use: ['@svgr/webpack', 'url-loader'],
 			},
 			{
 				test: /.(png|jpg|jpeg|gif)$/, // 匹配图片文件
@@ -97,6 +98,10 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, '../public/index.html'),
 			inject: true, // 自动注入静态资源
+		}),
+		// https://www.webpackjs.com/plugins/define-plugin#root
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 		}),
 	],
 	cache: {
