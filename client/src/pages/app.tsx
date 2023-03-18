@@ -1,6 +1,6 @@
 import styles from './app.module.less';
-import React, { useEffect, useRef } from 'react';
-// import { ReactComponent as BullSvg } from '@/assets/bull.svg';
+import React, { useEffect } from 'react';
+import BullImg, { ReactComponent as BullSvg } from '@/assets/bull.svg';
 import { io } from 'socket.io-client';
 
 export default function App() {
@@ -19,5 +19,8 @@ export default function App() {
 		socketIO.emit('login', { user: 'duk', captcha: '12345' });
 
 	}, []);
-	return <main className={styles['app']}></main>;
+	return <main className={styles['app']}>
+		<img src={BullImg} alt='' />
+		<BullSvg width={20} height={20} fill="#f30" />
+	</main>;
 }

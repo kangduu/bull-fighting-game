@@ -52,7 +52,11 @@ module.exports = {
 				],
 			},
 			{
-				test: /.(png|jpg|jpeg|gif|svg)$/, // 匹配图片文件
+				test: /.svg$/,
+				use: ['@svgr/webpack', 'url-loader']
+			},
+			{
+				test: /.(png|jpg|jpeg|gif)$/, // 匹配图片文件
 				type: 'asset', // type选择asset
 				parser: {
 					dataUrlCondition: {
