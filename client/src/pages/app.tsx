@@ -1,7 +1,8 @@
-import styles from './app.module.less';
+// import styles from './app.module.less';
 import React, { useEffect } from 'react';
 import BullImg, { ReactComponent as BullSvg } from '@/assets/bull.svg';
 import { io } from 'socket.io-client';
+import Card from '@/components/card';
 
 export default function App() {
 	useEffect(() => {
@@ -19,8 +20,10 @@ export default function App() {
 		socketIO.emit('login', { user: 'duk', captcha: '12345' });
 
 	}, []);
-	return <main className={styles['app']}>
-		<img src={BullImg} alt='' />
-		<BullSvg width={20} height={20} fill="#f30" />
+	return <main>
+		<Card>
+			{/* <img src={BullImg} alt='' /> */}
+			<BullSvg width={20} height={20} fill="#f30" />
+		</Card>
 	</main>;
 }

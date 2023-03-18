@@ -1,10 +1,16 @@
 import React from "react";
-import styles from "./styles.less";
+import styles from "./styles.module.less";
 
-function Card() {
+export interface CardProps extends ComponentCSSProps {
+    children?: React.ReactNode
+}
 
-    return <div>
-
+function Card(props: CardProps) {
+    const { className, style, children } = props
+    return <div
+        className={[styles.card, className || ''].join(' ')}
+        style={{ ...style }}>
+        {children}
     </div>
 }
 
