@@ -19,19 +19,21 @@ export default function App() {
 	// 创建斗牛牛游戏，新建房间
 	const handleCreateBullFightingGame = () => {
 		try {
-			let total: string | number | null = window.prompt('请输入玩家数量', '6');
-
+			let total: string | number | null = window.prompt(
+				'请输入玩家数量【2-10】',
+				'6'
+			);
 			if (total === null) return; // 取消
 
 			if (total) {
 				total = Number(total);
-				if (isNaN(total)) throw Error();
+				if (isNaN(total) || total < 2 || total > 10) throw Error();
 				// 开始创建房间
 				if (!socket) return;
 				socket?.emit?.('create_room', {
 					id: socket.id,
 					type: 'bull',
-					total: 6,
+					total,
 				});
 			} else throw Error();
 		} catch (error) {
@@ -62,6 +64,8 @@ export default function App() {
 		}
 	};
 
+	console.log(socket);
+	
 	return (
 		<SocketContext.Provider value={socket}>
 			<Card className={styles.each_card}>
