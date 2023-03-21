@@ -102,6 +102,7 @@ module.exports = {
 		// https://www.webpackjs.com/plugins/define-plugin#root
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+			'process.env.SERVER_ADDR': JSON.stringify(process.env.SERVER_ADDR),
 		}),
 	],
 	cache: {

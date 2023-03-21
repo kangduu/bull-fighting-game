@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
 const SERVICES_URL =
-	process.env.NODE_ENV === 'development' ? 'ws://192.168.10.99:3000' : '';
+	process.env.NODE_ENV === 'development' ? process.env.SERVER_ADDR : '';
 
 function connectServices(
 	connectCallback: (socket: any) => void,
