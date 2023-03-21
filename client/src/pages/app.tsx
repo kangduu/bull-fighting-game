@@ -14,6 +14,8 @@ export default function App() {
 			socket => setSocket(socket),
 			() => setSocket(null)
 		);
+
+		fetch(process.env.SERVER_ADDR + '/user');
 	}, []);
 
 	// 创建斗牛牛游戏，新建房间
@@ -65,7 +67,7 @@ export default function App() {
 	};
 
 	console.log(socket);
-	
+
 	return (
 		<SocketContext.Provider value={socket}>
 			<Card className={styles.each_card}>
