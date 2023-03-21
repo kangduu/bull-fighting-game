@@ -1,28 +1,28 @@
 .operation {
     display: flex;
     align-items: center;
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 500;
     margin-left: auto;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.45);
-    padding: 10px 16px;
+    padding: 18px 20px;
     border-radius: 10px;
     line-height: 1;
 
     .create {
-        margin-right: 40px;
+        margin-right: 60px;
         position: relative;
 
         &::after {
             content: "";
             display: block;
             width: 1px;
-            height: 20px;
-            background-color: #fff;
+            height: 26px;
+            background-color: #bbb;
             position: absolute;
-            top: 2px;
-            right: -20px;
+            top: 4px;
+            right: -30px;
 
         }
     }
@@ -41,18 +41,18 @@
 
 @media screen and (min-width:960px) {
     .operation {
-        font-size: 16px;
-        padding: 6px 12px;
+        font-size: 26px;
+        padding: 10px 16px;
         border-radius: 10px;
 
         .create {
-            margin-right: 20px;
+            margin-right: 40px;
 
             &::after {
                 width: 1px;
-                height: 14px;
+                height: 24px;
                 top: 2px;
-                right: -10px;
+                right: -20px;
             }
         }
     }
