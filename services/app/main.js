@@ -4,15 +4,17 @@ const path = require('path');
 const { Server } = require('socket.io');
 const { createServer } = require('http');
 const { sources } = require('./utils/sources');
-const modelHandler = require('./model/index');
+const SocketEventHandler = require('./socket/index');
 const { open } = require('fs/promises');
 
 const app = express();
 app.use(cors(sources));
+app.use(express.json());
+
 const HttpServer = createServer(app);
 const port = 3000;
 
-modelHandler(
+SocketEventHandler(
 	// 创建实时连接
 	new Server(HttpServer, {
 		cors: { origin: sources },
@@ -29,6 +31,13 @@ app.get('/user', (req, res) => {
 		};
 		res.json(response);
 	});
+});
+
+app.post('/login', (req, res) => {
+	// const query = url.parse(req.url, true).query;
+	console.log(req.body);
+
+	res.end();
 });
 
 HttpServer.listen(port, () => {
