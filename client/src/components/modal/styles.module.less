@@ -1,0 +1,25 @@
+.modal_layer {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+
+    .content {
+        width: 600px;
+        min-height: 200px;
+        border-radius: 10px;
+        padding: 30px 20px;
+        box-sizing: border-box;
+        background: var(--primary-color);
+
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
