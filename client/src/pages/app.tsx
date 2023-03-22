@@ -5,6 +5,8 @@ import { ReactComponent as FiredSvg } from '@/assets/fired.svg';
 import Card from '@/components/card';
 import CreateRoom from '@/components/create-room';
 import { connectServices } from '@/services/socket.io';
+import Modal from '@/components/modal';
+import Login from '@/components/login';
 
 const SocketContext = React.createContext(null);
 export default function App() {
@@ -15,29 +17,43 @@ export default function App() {
 			() => setSocket(null)
 		);
 
-		fetch(process.env.SERVER_ADDR + '/user');
+		fetch(process.env.SERVER_ADDR + '/login', {
+			method: 'POST',
+			// mode: 'cors',
+			// cache: 'no-cache',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				username: 'duk',
+				passwd: '123456',
+			}),
+		});
+
+		// fetch(process.env.SERVER_ADDR + '/user');
 	}, []);
 
 	// 创建斗牛牛游戏，新建房间
 	const handleCreateBullFightingGame = () => {
 		try {
-			let total: string | number | null = window.prompt(
-				'请输入玩家数量【2-10】',
-				'6'
-			);
-			if (total === null) return; // 取消
+			Modal({
+				content: <Login />,
+			});
+			// let total: string | number | null = window.prompt(
+			// 	'请输入玩家数量【2-10】',
+			// 	'6'
+			// );
+			// if (total === null) return; // 取消
 
-			if (total) {
-				total = Number(total);
-				if (isNaN(total) || total < 2 || total > 10) throw Error();
-				// 开始创建房间
-				if (!socket) return;
-				socket?.emit?.('create_room', {
-					id: socket.id,
-					type: 'bull',
-					total,
-				});
-			} else throw Error();
+			// if (total) {
+			// 	total = Number(total);
+			// 	if (isNaN(total) || total < 2 || total > 10) throw Error();
+			// 	// 开始创建房间
+			// 	if (!socket) return;
+			// 	socket?.emit?.('create_room', {
+			// 		id: socket.id,
+			// 		type: 'bull',
+			// 		total,
+			// 	});
+			// } else throw Error();
 		} catch (error) {
 			const rewrite = window.confirm('玩家数量输入有误，是否重新输入?');
 			if (rewrite) handleCreateBullFightingGame();
