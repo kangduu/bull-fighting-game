@@ -1,0 +1,59 @@
+.operation {
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 500;
+    margin-left: auto;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 18px 20px;
+    border-radius: 10px;
+    line-height: 1;
+
+    .create {
+        margin-right: 60px;
+        position: relative;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 26px;
+            background-color: #bbb;
+            position: absolute;
+            top: 4px;
+            right: -30px;
+
+        }
+    }
+
+    .create,
+    .join {
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            color: var(--primary-highlight-color);
+        }
+    }
+}
+
+
+@media screen and (min-width:960px) {
+    .operation {
+        font-size: 26px;
+        padding: 10px 16px;
+        border-radius: 10px;
+
+        .create {
+            margin-right: 40px;
+
+            &::after {
+                width: 1px;
+                height: 24px;
+                top: 2px;
+                right: -20px;
+            }
+        }
+    }
+}

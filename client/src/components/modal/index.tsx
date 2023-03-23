@@ -9,8 +9,14 @@ function CreateContainer(): HTMLDivElement {
 }
 
 export interface ModalConfig {
+	title: React.ReactNode;
 	content: React.ReactNode;
+	onOk: (close: () => void) => void;
+	okText?: React.ReactNode;
+	cancelText?: React.ReactNode;
+	onCancel?: () => void;
 	maskClosable?: boolean;
+	closable?: boolean;
 }
 
 function Modal(config: ModalConfig) {
@@ -31,6 +37,7 @@ function Modal(config: ModalConfig) {
 			root.render(
 				<Mask
 					{...restConfig}
+					closable={'closable' in config ? config.closable : true}
 					onClose={close}>
 					{content}
 				</Mask>
